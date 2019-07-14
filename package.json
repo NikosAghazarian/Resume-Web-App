@@ -1,0 +1,18 @@
+{
+  "name": "internetmonitorserver",
+  "version": "0.1.0",
+  "description": "a nodejs server to monitor internet",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "author": "Nikos Aghazarian",
+  "license": "ISC",
+  "dependencies": {
+    "fast-speedtest-api": "^0.3.2",
+    "nodemailer": "^6.2.1",
+    "ping-monitor": "^0.4.4",
+    "speedtest-net": "^1.5.1"
+  }
+}
