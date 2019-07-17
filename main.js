@@ -1,6 +1,9 @@
 const Monitor = require('ping-monitor');
+
+
 const NORMAL_INTERVAL = 10;
 const FAST_INTERVAL = 0.5;
+
 
 const monitorHosts = ['www.blizzard.com/en-us/', 'github.com', 'www.amazon.com', 'www.nytimes.com'];
 let monitorList = {
