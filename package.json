@@ -11,7 +11,8 @@
   "license": "ISC",
   "dependencies": {
     "fast-speedtest-api": "^0.3.2",
-    "nodemailer": "^6.2.1",
+    "mysql": "^2.17.1",
+    "nodemailer": "^6.3.0",
     "ping-monitor": "^0.4.4",
     "speedtest-net": "^1.5.1"
   }
