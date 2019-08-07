@@ -1,0 +1,95 @@
+html {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: #fffcef;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
+}
+body header {
+  color: black;
+  display: inherit;
+  flex-direction: column;
+  height: 12%;
+  background-color: #0081bc;
+  box-shadow: 0px 10px 5px lightgrey;
+}
+body header h1 {
+  display: inherit;
+  height: 65%;
+  margin: 0px;
+  padding: 5px;
+}
+body header nav {
+  display: inherit;
+  flex-direction: row;
+  justify-content: center;
+  height: 35%;
+  width: 100%;
+}
+body header nav button {
+  background: linear-gradient(#0081bc, #89daff);
+  width: 50%;
+  border-width: 0px 1px 0px 1px;
+  border-style: solid;
+  border-color: #464646;
+  font: inherit;
+}
+body header nav button:hover, body header nav button:focus {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.3)), linear-gradient(#0081bc, #89daff);
+}
+body header nav button:active, body header nav button:disabled {
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.7)), linear-gradient(#0081bc, #89daff);
+  color: inherit;
+}
+body header nav .firstBtn {
+  border-left-width: 0px;
+}
+body header nav .lastBtn {
+  border-right-width: 0px;
+}
+body #main {
+  display: inherit;
+  flex-direction: column;
+  height: 82%;
+  padding: 1%;
+  width: 98%;
+}
+body #main app-root {
+  display: inherit;
+  flex-direction: inherit;
+  width: 100%;
+  height: 100%;
+  /* div {
+    display: block;
+    width: 100%;
+    height: 30%;
+  } */
+}
+body #main app-root h2 {
+  width: 100%;
+  display: inherit;
+  height: 5%;
+}
+body footer {
+  display: inherit;
+  height: 4%;
+  padding: 5px;
+  color: #999999;
+  background-color: #003b56;
+}
+body footer p {
+  margin: 0px;
+}
+
+a {
+  color: #00B7FF;
+}
+
+/*# sourceMappingURL=styles.css.map */

@@ -1,0 +1,115 @@
+$BG1: rgb(255, 252, 239);
+$BG2: adjust-hue($color:$BG1, $degrees: 150);
+
+$text: black;
+$navLinkCount: 2;
+$navGradient: linear-gradient(darken($color: $BG2, $amount: 60) ,darken($color: $BG2, $amount: 20));
+
+html {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-color: $BG1;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0px;
+
+  header {
+    color: $text;
+    display: inherit;
+    flex-direction: column;
+    height: 12%;
+    background-color: darken($color: $BG2, $amount: 60);
+    box-shadow: 0px 10px 5px lightgrey;
+    
+    h1 {
+      display: inherit;
+      height: 65%;
+      margin: 0px;
+      padding: 5px;
+    }
+
+    nav {
+      display: inherit;
+      flex-direction: row;
+      justify-content: center;
+      height: 35%;
+      width: 100%;
+
+      button {
+        background: $navGradient;
+        width: 100%/$navLinkCount;
+        border-width: 0px 1px 0px 1px;
+        border-style: solid;
+        border-color: rgb(70, 70, 70);
+        font: inherit;
+      }   
+
+      button:hover, button:focus{
+        background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 0.3)), $navGradient;
+      }
+
+      button:active, button:disabled {
+        background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 0.7)), $navGradient;
+        color:inherit;
+      }
+
+      .firstBtn {
+        border-left-width: 0px;
+      }
+      
+      .lastBtn {
+        border-right-width: 0px;
+      }
+    }
+
+  }
+
+  #main {
+    display: inherit;
+    flex-direction: column;
+    height: 82%;
+    padding: 1%;
+    width: 98%;
+
+    app-root {
+      display: inherit;
+      flex-direction: inherit;
+      width: 100%;
+      height: 100%;
+      
+      h2 {
+        width: 100%;
+        display: inherit;
+        height: 5%;
+      }
+
+      /* div {
+        display: block;
+        width: 100%;
+        height: 30%;
+      } */
+    }
+  }
+
+  footer {
+    display: inherit;
+    height: 4%;
+    padding: 5px;
+    color: lighten($color: $text, $amount: 60);
+    background-color: darken($color: $BG2, $amount: 80);  
+  
+    p {
+      margin: 0px;
+    }
+  }
+}
+
+a {
+  color: #00B7FF;
+}
