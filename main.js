@@ -30,6 +30,8 @@ app.use(express.static(__dirname + '/UI/'));
 app.use(express.static(__dirname + '/UI/javascripts/')); */
 app.use('/', viewRouter.index);
 app.use('/internetMonitor', viewRouter.internetMonitor);
+app.use('/Greywater', viewRouter.Greywater);
+app.use('/Home', viewRouter.Home);
 
 // api initialization
 app.use('/api/connection', apiRouter.connection_data_router);
