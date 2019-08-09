@@ -4,12 +4,11 @@ const express = require('express');
 
 // formatted date return method
 Object.defineProperty(Date.prototype, 'YYYYMMDDHHMMSS', { 
-    
     value: function() {
         function pad2(n) {  // always returns a string
             return (n < 10 ? '0' : '') + n;
         }
-        dt = new Date();
+        let dt = new Date();
         return dt.getFullYear() + '-' +
                pad2(dt.getMonth() + 1) + '-' +
                pad2(dt.getDate()) + ' ' +

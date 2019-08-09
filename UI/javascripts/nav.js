@@ -9,6 +9,9 @@ function GetRoute(path) {
     request.onload = () => {
         //console.log(request.response);
         mainDivElement.innerHTML = request.response;
+        if (path === 'InternetMonitor') {
+            drawChart();
+        }
     }
     request.onerror = () => {
         console.error(request.statusText);

@@ -41,8 +41,8 @@ function PingMonitor() {
             pingMonitor.on('down', (res, state) => {
                 console.log(res.website + " is down");
                 console.log(res.website + " timeOut: " + timeout + " --- interval: " + state.interval);
-                PingLogger(host, 0, 'wired');
-                if (timeout > 20) {
+                PingLogger(host, null, 'wired');
+                if (timeout > 10) {
                     console.log(res.website + " has been down for over 10 minutes.")
                 }
                 if (timeout === 0 && state.interval !== FAST_INTERVAL) {

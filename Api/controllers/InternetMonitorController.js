@@ -18,12 +18,42 @@ exports.connection_data = (req, res, next) => {
         res.send('Invalid Query type');
         return;
     }
+    let time;
+    if (!req.query.time) {
+        time = 4;
+    }
+    else {
+        time = req.query.time;
+    }
 
-    let query = `SELECT * FROM dev.pingconnectivity_${req.query.internetConnectionType}`;
+    if (req.query.service) {
+        let service;
+        switch (req.query.service) {
+            case 'GIT':
+                service = 'github.com';
+                break;
+            case 'BLZ':
+                service = 'www.blizzard.com/en-us/';
+                break;
+            case 'NYT':
+                service = 'www.nytimes.com';
+                break;
+            case 'AWS':
+                service = 'www.amazon.com';
+                break;
+            default:
+                service = 'www.amazon.com';
+        }
+
+        var query = `SELECT * FROM dev.pingconnectivity_${req.query.internetConnectionType} WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR) AND Service = ${service}`;
+    }
+    else {
+        var query = `SELECT * FROM dev.pingconnectivity_${req.query.internetConnectionType} WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR)`;
+    }
 
     DbQuery(query, (error, results, fields) => {
         if (error) throw error;
-        console.log(results);
+        //console.log(results);
         res.send(results);
     });
 }
@@ -33,7 +63,7 @@ exports.services = (req, res, next) => {
 
     DbQuery(query, (error, results, fields) => {
         if (error) throw error;
-        console.log(results);
+        //console.log(results);
         res.send(results);
     });
 }
