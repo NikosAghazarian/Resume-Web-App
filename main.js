@@ -1,4 +1,4 @@
-const PingMonitor = require('./Server/ping').PingMonitor;
+const PingMonitor = require('./Server/ping'); // monitor initialization and logging
 const express = require('express');
 
 
@@ -16,7 +16,7 @@ Object.defineProperty(Date.prototype, 'YYYYMMDDHHMMSS', {
                pad2(dt.getMinutes()) + ':' +
                pad2(dt.getSeconds());
     }
-}); 
+});
 
 
 // ROUTING
@@ -41,7 +41,4 @@ let port = process.env.PORT || 3000;
 app.listen(port, '192.168.217.128');
 console.log('RESTful API started on: ' + port);
 
-
-// monitor initialization and logging
-PingMonitor();
 

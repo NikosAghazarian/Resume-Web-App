@@ -1,22 +1,40 @@
 <h2>Ethernet Status: </h2>
-<div id="chart_div" style="width: 100%"></div>
-<h2>Wifi Status: </h2>
-<div id="chart_div2" style="width: 100%"></div>
-<form>
-    <h5>Starting from (hours ago):</h5>
-    <input type="number" id="start_hour" value=4>
+<div id="chart_div_wired" style="width: 100%"></div>
 
-    <h5>Maximum displayed ping (vertical axis):</h5>
-    <input type="number" id="max_chart_y" value=600>
-
-    <h5>Service:</h5>
-    <select id="service_select">
+<h5>Service:
+    <select id="service_select_wired">
         <option value="ALL">All</option>
         <option value="GIT">Github</option>
         <option value="AWS">Amazon</option>
         <option value="BLZ">Blizzard</option>
         <option value="NYT">New York Times</option>
     </select>
+</h5>
 
-    <button type="button" onclick="drawChart()">Go!</button>
+<h2>Wifi Status: </h2>
+<div id="chart_div_wifi" style="width: 100%"></div>
+<h5>Service:
+    <select id="service_select_wifi">
+        <option value="ALL">All</option>
+        <option value="APL">Apple</option>
+        <option value="CNN">CNN</option>
+        <option value="EBY">EBAY</option>
+        <option value="MSF">Microsoft</option>
+    </select>
+</h5>
+<h2>Settings: </h2>
+<form>
+    <h5>Starting from (hours ago): 
+        <input type="number" id="start_hour" value=4>
+    </h5>
+
+    <h5>Maximum displayed ping (vertical axis): 
+        <input type="number" id="max_chart_y" value=600>
+    </h5>
+
+    <h5>Average: 
+        <input type="checkbox" id='average_check'>
+    </h5>
+    
+    <button type="button" onclick="drawChart(true)">Go!</button>
 </form>

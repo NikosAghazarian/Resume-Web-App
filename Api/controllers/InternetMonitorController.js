@@ -41,6 +41,18 @@ exports.connection_data = (req, res, next) => {
             case 'AWS':
                 service = 'www.amazon.com';
                 break;
+            case 'APL':
+                service = 'www.apple.com';
+                break;
+            case 'CNN':
+                service = 'www.cnn.com';
+                break;
+            case 'EBY':
+                service = 'www.ebay.com';
+                break;
+            case 'MSF':
+                service = 'www.microsoft.com/en-us';
+                break;
             default:
                 service = 'www.amazon.com';
         }
@@ -53,13 +65,29 @@ exports.connection_data = (req, res, next) => {
 
     DbQuery(query, (error, results, fields) => {
         if (error) throw error;
+        for (let row of results) {
+            let time = row.Time;
+            row.Time = time.getFullYear() + '-' +
+                  pad2(time.getMonth() + 1) + '-' +
+                  pad2(time.getDate()) + ' ' +
+                  pad2(time.getHours()) + ':' +
+                  pad2(time.getMinutes()) + ':' +
+                  pad2(time.getSeconds());
+        }
         //console.log(results);
         res.send(results);
+        function pad2(n) {  // always returns a string
+            return (n < 10 ? '0' : '') + n;
+        }
     });
 }
 
 exports.services = (req, res, next) => {
-    let query = `SELECT DISTINCT Service FROM dev.pingconnectivity_wired`;
+    if (req.query.internetConnectionType !== 'wired' && req.query.internetConnectionType !== 'wifi') {
+        res.send('Invalid Query type');
+        return;
+    }
+    let query = `SELECT DISTINCT Service FROM dev.pingconnectivity_${req.query.internetConnectionType}`;
 
     DbQuery(query, (error, results, fields) => {
         if (error) throw error;

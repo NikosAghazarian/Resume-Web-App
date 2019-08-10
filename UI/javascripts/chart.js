@@ -2,7 +2,6 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 
 window.onresize = drawChart; // RESIZES chart with window size
 
-
 function getDbData(path) {
     /* 
     *  Handles and returns an XHR promise with a given path of the app
@@ -30,7 +29,7 @@ function getDbData(path) {
 async function generateDataArray(network) {
     let dataArray = [['Time']];
 
-    let selectedServices = document.getElementById('service_select').value;
+    let selectedServices = document.getElementById(`service_select_${network}`).value;
     let selectDistinctService;
     // This controls how many services are displayed
     if (selectedServices !== 'ALL') {
@@ -47,15 +46,27 @@ async function generateDataArray(network) {
             case 'AWS':
                 selectDistinctService = [{Service: 'www.amazon.com'}];
                 break;
+            case 'APL':
+                selectDistinctService = [{Service: 'www.apple.com'}];
+                break;
+            case 'CNN':
+                selectDistinctService = [{Service: 'www.cnn.com'}];
+                break;
+            case 'EBY':
+                selectDistinQctService = [{Service: 'www.ebay.com'}];
+                break;
+            case 'MSF':
+                selectDistinctService = [{Service: 'www.microsoft.com/en-us'}];
+                break;
             default:
                 selectDistinctService = [{Service: 'www.amazon.com'}];
         }
     }
     else {
-        selectDistinctService = await getDbData('api/services'); // SELECT DISTINCT Service FROM dev.pingconnectivity_wired 
+        selectDistinctService = await getDbData(`api/services?internetConnectionType=${network}`); // SELECT DISTINCT Service FROM dev.pingconnectivity_wired 
     }
 
-    let selectedTimeStart = document.getElementById('start_time').value;
+    let selectedTimeStart = document.getElementById('start_hour').value;
 
     //console.log(selectDistinctService);
     let selectServiceData = await getDbData(`api/connection?internetConnectionType=${network}&time=${selectedTimeStart}`); //SELECT * from last 4 hours
@@ -71,7 +82,7 @@ async function generateDataArray(network) {
 
     for (let dataIdx = 0; dataIdx < serviceCount; dataIdx++) { // creates data rows (columns on the chart) labeled with timestamps, iterating over DB return
         
-        let timestamp = selectServiceData[dataIdx].Time.replace(/[ZT]/g, ' '); // removes incorrect labels for timezone, prevents: "2019-08-08T02:09:14.000Z"
+        let timestamp = selectServiceData[dataIdx].Time;
         let selectedDataCol = dataArray[0].indexOf(selectServiceData[dataIdx].Service);
 
         if (findSimilarDate(dataArray, timestamp) === -1) {
@@ -83,6 +94,17 @@ async function generateDataArray(network) {
         
         dataArray[rowIdx][selectedDataCol] = selectServiceData[dataIdx].Ping;
     }
+
+    if (document.getElementById('average_check').checked) {
+        dataArray[0] = ['Time', 'Average of Selected Service(s)'];
+        let rowCount = dataArray.length;
+        let reducer = (accumulator, currVal) => accumulator + currVal;
+        for (let row = 1; row < rowCount; row++) {
+            let newRow = [dataArray[row].shift()]
+            newRow.push( dataArray[row].reduce(reducer) / (ROW_SIZE-1) );
+            dataArray[row] = newRow;
+        }
+    }
     return dataArray;
 
     function findSimilarDate(datatableToSearch, query) {
@@ -91,7 +113,7 @@ async function generateDataArray(network) {
     */
         for (let i = datatableToSearch.length-1; i > 0; i--) { //iterates over datatable rows
             query = query.slice(0,17);
-            regex = new RegExp(query+'[0-9][0-9].000');
+            regex = new RegExp(query+'[0-9][0-9]');
             if (regex.test(datatableToSearch[i][0])) {
                 return i;
             }
@@ -100,12 +122,26 @@ async function generateDataArray(network) {
     }
 }
 
-async function drawChart() {
-    console.log('drawChart');
-    let dataArray = await generateDataArray('wired');
-    let data = google.visualization.arrayToDataTable(dataArray);
+let data_wired;
+let data_wifi;
 
-    let options = {
+async function drawChart(updateCall) {
+    console.log('drawChart');
+    if (!document.getElementById('chart_div_wired')) {
+        return;
+    }
+
+    let dataArray_wired;
+    let dataArray_wifi;
+    if (updateCall || !Array.isArray(dataArray_wired)) {
+        dataArray_wired = await generateDataArray('wired');
+        data_wired = google.visualization.arrayToDataTable(dataArray_wired);
+        dataArray_wifi = await generateDataArray('wifi');
+        data_wifi = google.visualization.arrayToDataTable(dataArray_wifi);
+    }
+
+
+    const options = {
         title: 'Network Performance',
         width: '100%',
         curveType: 'function',
@@ -119,10 +155,15 @@ async function drawChart() {
         }
     };
 
-    let chart;
+    let chart_wired;
+    let chart_wifi;
+
     try {
-        chart = new google.visualization.LineChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
+        chart_wired = new google.visualization.LineChart(document.getElementById('chart_div_wired'));
+        chart_wired.draw(data_wired, options);
+
+        chart_wifi = new google.visualization.LineChart(document.getElementById('chart_div_wifi'));
+        chart_wifi.draw(data_wifi, options);
     } catch (error) {
         console.log(error);
     }

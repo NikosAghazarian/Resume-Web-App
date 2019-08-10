@@ -6,31 +6,38 @@ const NORMAL_INTERVAL = 1;
 const FAST_INTERVAL = NORMAL_INTERVAL;
 
 
-const monitorHosts = ['www.blizzard.com/en-us/', 'github.com', 'www.amazon.com', 'www.nytimes.com'];
+const monitorHosts_wired = ['www.blizzard.com/en-us/', 'github.com', 'www.amazon.com', 'www.nytimes.com'];
+const monitorHosts_wifi = ['www.apple.com', 'www.cnn.com', 'www.ebay.com', 'www.microsoft.com/en-us']
 
-let monitorList = {
+let monitorList_wired = {
     'www.blizzard.com/en-us/': undefined,
     'www.github.com': undefined,
     'www.amazon.com': undefined,
     'www.nytimes.com': undefined
 }
+let monitorList_wifi = {
+    'www.apple.com': undefined,
+    'www.cnn.com': undefined,
+    'www.ebay.com': undefined,
+    'www.microsoft.com/en-us': undefined
+}
 
-function PingMonitor() {
+function PingMonitor(monitorHosts, monitorList, connectionType) {
     monitorHosts.forEach( (host) => {
         // npm ping-monitor
 
-        let pingMonitor = new Monitor({
+        let ping_monitor = new Monitor({
             website: 'https://' + host,
             interval: NORMAL_INTERVAL, // minutes
         });
 
-        MonitorEventBuilder(pingMonitor);
+        MonitorEventBuilder(ping_monitor);
 
-        function MonitorEventBuilder(pingMonitor) {
+        function MonitorEventBuilder(ping_monitor) { // builds events for individual monitors
             let timeout = 0;
-            pingMonitor.on('up', (res) => {
-                console.log(res.website + " is live: " + res.responseTime + "ms");
-                PingLogger(host, res.responseTime, 'wired');
+            ping_monitor.on('up', (res) => {
+                console.log(res.website + " is live: " + res.responseTime + "ms, " + connectionType);
+                PingLogger(host, res.responseTime);
                 if (timeout > NORMAL_INTERVAL) { // five minute continuous outage is when multiple responses are required to confirm stability
                     timeout -= 5;
                 }
@@ -38,14 +45,14 @@ function PingMonitor() {
                     timeout = 0;
                 }
             });
-            pingMonitor.on('down', (res, state) => {
+            ping_monitor.on('down', (res, state) => {
                 console.log(res.website + " is down");
                 console.log(res.website + " timeOut: " + timeout + " --- interval: " + state.interval);
-                PingLogger(host, null, 'wired');
+                PingLogger(host, null);
                 if (timeout > 10) {
                     console.log(res.website + " has been down for over 10 minutes.")
                 }
-                if (timeout === 0 && state.interval !== FAST_INTERVAL) {
+                /* if (timeout === 0 && state.interval !== FAST_INTERVAL) { //for a rapid logging mode for 
                     pingMonitor = null;
                     let apiReplacement = new Monitor({
                         website: res.website,
@@ -53,18 +60,19 @@ function PingMonitor() {
                     });
                     MonitorEventBuilder(apiReplacement);
                     monitorList[res.website] = apiReplacement;
-                }
+                } */
                 timeout++;
             });
-            pingMonitor.on('error', () => {
+            ping_monitor.on('error', () => {
                 console.error("err");
             });
         }
     
         // populates the object holding existing monitors
-        monitorList[host] = pingMonitor; 
+        monitorList[host] = ping_monitor; 
     });
-    function PingLogger(service, ping, connectionType) { 
+
+    function PingLogger(service, ping) { 
         // ping = Number, connectionType = [wired|wifi], service = [www.blizzard.com/en-us/|github.com|www.amazon.com|www.nytimes.com]
         
         const connection = mysql.createConnection({
@@ -89,7 +97,5 @@ function PingMonitor() {
 
 
 
-
-module.exports = {
-    PingMonitor: PingMonitor
-}
+PingMonitor(monitorHosts_wired, monitorList_wired, 'wired');
+PingMonitor(monitorHosts_wifi, monitorList_wifi, 'wifi');
