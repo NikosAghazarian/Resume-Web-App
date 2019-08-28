@@ -68,6 +68,9 @@ body #main h2 {
   display: inherit;
   height: 5%;
 }
+body #main .hide {
+  display: none;
+}
 body footer {
   display: inherit;
   flex-grow: 0;

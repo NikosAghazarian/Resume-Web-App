@@ -1,6 +1,6 @@
 google.charts.load('current', {packages: ['corechart', 'bar']});
 
-window.onresize = drawChart; // RESIZES chart with window size
+window.onresize = resize; // RESIZES chart with window size
 
 function getDbData(path) {
     /* 
@@ -114,9 +114,9 @@ async function generateDataArray(network) {
 
     if (document.getElementById('average_check').checked || document.getElementById('merge_average').checked) { // this averages the rows
         dataArray[0] = ['Time', `Average of Selected Service(s) on ${network} network`];
-        let rowCount = dataArray.length;
+        const ROW_COUNT = dataArray.length;
         let reducer = (accumulator, currVal) => accumulator + currVal;
-        for (let row = 1; row < rowCount; row++) {
+        for (let row = 1; row < ROW_COUNT; row++) {
             let newRow = [dataArray[row].shift()];
             newRow.push( dataArray[row].reduce(reducer) / (ROW_SIZE-1) );
             dataArray[row] = newRow;
@@ -128,23 +128,26 @@ async function generateDataArray(network) {
          *   and they just need to be merged into the same rows,
          *   much of the code below will copy from above to create a new dataArray
          */
-        var mergedDataArray = [['Time', '1'/* Average of Selected Service(s) on wired network */, '2'/* Average of Selected Service(s) on wifi network */]];
-        
-        for (let dataArrayIdx = 0; dataArrayIdx < serviceCount; dataArrayIdx++) { // creates data rows (columns on the chart) labeled with timestamps, iterating over DB return
-        
+        var mergedDataArray = [['Time', 'Average on wired network', 'Average on wifi network']];
+        const MERGED_ROW_SIZE = mergedDataArray[0].length;
+        const DATA_ROW_COUNT = dataArray.length;
+        let rowIdx = 0;
+        //console.log(dataArray);
+        for (let dataArrayIdx = 1; dataArrayIdx < DATA_ROW_COUNT; dataArrayIdx++) { // creates data rows (columns on the chart) labeled with timestamps, iterating over DB return
+            //console.log("rowIdx: " + rowIdx);
+            //console.log("dataArrayIdx: " + dataArrayIdx);
             let timestamp = dataArray[dataArrayIdx][0];
             let selectedDataCol = connectionTypeKey[dataArrayIdx];
 
-            if (findSimilarDate(dataArray, timestamp) === -1) { // if no similar date found, create new row, and advance the current row index
+            if (findSimilarDate(mergedDataArray, timestamp) === -1) { // if no similar date found, create new row, and advance the current row index
                 rowIdx++;
-                let row = Array(ROW_SIZE).fill(null); // preallocate row to maintain square 2D array
-                dataArray.push(row);
-                dataArray[rowIdx][0] = timestamp; // [[Time, lable, label], [2:45, null, null]] example expected
+                let row = Array(MERGED_ROW_SIZE).fill(null); // preallocate row to maintain square 2D array
+                mergedDataArray.push(row);
+                mergedDataArray[rowIdx][0] = timestamp; // [[Time, lable, label], [2:45, null, null]] example expected
             }
             
-            dataArray[rowIdx][selectedDataCol] = dataArray[dataArrayIdx][1];
+            mergedDataArray[rowIdx][selectedDataCol] = dataArray[dataArrayIdx][1];
         }
-
 
         return mergedDataArray;
     }
@@ -177,6 +180,10 @@ let data_wired;
 let data_wifi;
 let data_merged;
 
+function resize(event) {
+    drawChart(false)
+}
+
 async function drawChart(updateCall) {
     console.log('drawChart');
     if (!document.getElementById('chart_div_wired')) { // stops execution if there is no chart div to use
@@ -185,7 +192,7 @@ async function drawChart(updateCall) {
 
     let dataArray_wired;
     let dataArray_wifi;
-    if (updateCall || !Array.isArray(data_wired)) { // optimizes for resize calls to prevent recalculations
+    if (updateCall || typeof data_wired !== 'object') { // optimizes for resize calls to prevent recalculations
         if (!document.getElementById('merge_average').checked) {
             dataArray_wired = await generateDataArray('wired');
             dataArray_wifi = await generateDataArray('wifi');
@@ -217,8 +224,10 @@ async function drawChart(updateCall) {
     if (document.getElementById('merge_average').checked) {
         let chart;
 
+        swapGraphsDisplayed(true);
+
         try {
-            chart = new google.visualization.LineChart(document.getElementById('chart_div_wired'));
+            chart = new google.visualization.LineChart(document.getElementById('chart_div_merged'));
             chart.draw(data_merged, options);
         } catch (error) {
             console.log(error);
@@ -227,6 +236,8 @@ async function drawChart(updateCall) {
     else {
         let chart_wired;
         let chart_wifi;
+
+        swapGraphsDisplayed(false);
 
         try {
             chart_wired = new google.visualization.LineChart(document.getElementById('chart_div_wired'));
@@ -240,3 +251,25 @@ async function drawChart(updateCall) {
     }
 }
 
+function swapGraphsDisplayed(toMerged) {
+    if (toMerged) {
+        let revealList = document.getElementsByClassName('mergedNetworkElements');
+        for (let elem of revealList) {
+            elem.classList.remove('hide');
+        }
+        let hideList = document.getElementsByClassName('individualNetworkElements');
+        for (let elem of hideList) {
+            elem.classList.add('hide');
+        }
+    }
+    else {
+        let revealList = document.getElementsByClassName('individualNetworkElements');
+        for (let elem of revealList) {
+            elem.classList.remove('hide');
+        }
+        let hideList = document.getElementsByClassName('mergedNetworkElements');
+        for (let elem of hideList) {
+            elem.classList.add('hide');
+        }
+    }
+}

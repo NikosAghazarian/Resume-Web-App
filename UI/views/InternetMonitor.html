@@ -1,7 +1,7 @@
-<h2>Ethernet Status: </h2>
-<div id="chart_div_wired" style="width: 100%"></div>
 
-<h5>Service:
+<h2 class="individualNetworkElements" id="stat_wired">Ethernet Status: </h2>
+<div class="individualNetworkElements" id="chart_div_wired" style="width: 100%"></div>
+<h5 class="individualNetworkElements">Service:
     <select id="service_select_wired">
         <option value="ALL">All</option>
         <option value="GIT">Github</option>
@@ -15,9 +15,11 @@
     </select>
 </h5>
 
-<h2>Wifi Status: </h2>
-<div id="chart_div_wifi" style="width: 100%"></div>
-<h5>Service:
+
+
+<h2 class="individualNetworkElements" id="stat_wifi">Wifi Status: </h2>
+<div class="individualNetworkElements" id="chart_div_wifi" style="width: 100%"></div>
+<h5 class="individualNetworkElements">Service:
     <select id="service_select_wifi">
         <option value="ALL">All</option>
         <option value="GIT">Github</option>
@@ -30,6 +32,10 @@
         <option value="MSF">Microsoft</option>
     </select>
 </h5>
+
+<h2 class="mergedNetworkElements" id="stat_wifi">Both Network Averages: </h2>
+<div class="mergedNetworkElements" id="chart_div_merged" style="width: 100%"></div>
+
 <h2>Settings: </h2>
 <form>
     <h5>Starting from (hours ago): 
