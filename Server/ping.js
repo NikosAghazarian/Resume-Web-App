@@ -6,23 +6,23 @@ const NORMAL_INTERVAL = 1;
 const FAST_INTERVAL = NORMAL_INTERVAL;
 
 
-const monitorHosts_wired = ['www.blizzard.com/en-us/', 'github.com', 'www.amazon.com', 'www.nytimes.com'];
-const monitorHosts_wifi = ['www.apple.com', 'www.cnn.com', 'www.ebay.com', 'www.microsoft.com/en-us']
+const monitorHosts = ['www.blizzard.com/en-us/', 'github.com', 'www.amazon.com', 'www.nytimes.com', 'www.apple.com', 'www.cnn.com', 'www.ebay.com', 'www.microsoft.com/en-us'];
 
-let monitorList_wired = {
+let monitorList = {
     'www.blizzard.com/en-us/': undefined,
     'www.github.com': undefined,
     'www.amazon.com': undefined,
-    'www.nytimes.com': undefined
-}
-let monitorList_wifi = {
+    'www.nytimes.com': undefined,
     'www.apple.com': undefined,
     'www.cnn.com': undefined,
     'www.ebay.com': undefined,
     'www.microsoft.com/en-us': undefined
 }
 
+
 function PingMonitor(monitorHosts, monitorList, connectionType) {
+    let type = connectionType === "wired" ? 1 : 2; // 1 is wired, 2 is wifi
+    
     monitorHosts.forEach( (host) => {
         // npm ping-monitor
 
@@ -85,7 +85,7 @@ function PingMonitor(monitorHosts, monitorList, connectionType) {
 
         let timestamp = Date.prototype.YYYYMMDDHHMMSS();
 
-        let query = "INSERT INTO dev.pingconnectivity_"+connectionType+" (Time, Service, Ping) VALUES ('"+timestamp+"', '"+service+"', "+ping+")";
+        let query = "INSERT INTO dev.pingconnectivity (Time, Service, Ping, Connection) VALUES ('"+timestamp+"', '"+service+"', '"+ping+"', '"+type+"')";
         
         connection.query(query, function (error, results, fields) {
             if (error) throw error;
@@ -96,6 +96,6 @@ function PingMonitor(monitorHosts, monitorList, connectionType) {
 }
 
 
+PingMonitor(monitorHosts, monitorList, 'wired');
 
-PingMonitor(monitorHosts_wired, monitorList_wired, 'wired');
-PingMonitor(monitorHosts_wifi, monitorList_wifi, 'wifi');
+PingMonitor(monitorHosts, monitorList, 'wifi');

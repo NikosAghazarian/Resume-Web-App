@@ -8,6 +8,10 @@
         <option value="AWS">Amazon</option>
         <option value="BLZ">Blizzard</option>
         <option value="NYT">New York Times</option>
+        <option value="APL">Apple</option>
+        <option value="CNN">CNN</option>
+        <option value="EBY">EBAY</option>
+        <option value="MSF">Microsoft</option>
     </select>
 </h5>
 
@@ -16,6 +20,10 @@
 <h5>Service:
     <select id="service_select_wifi">
         <option value="ALL">All</option>
+        <option value="GIT">Github</option>
+        <option value="AWS">Amazon</option>
+        <option value="BLZ">Blizzard</option>
+        <option value="NYT">New York Times</option>
         <option value="APL">Apple</option>
         <option value="CNN">CNN</option>
         <option value="EBY">EBAY</option>
@@ -34,6 +42,10 @@
 
     <h5>Average: 
         <input type="checkbox" id='average_check'>
+    </h5>
+
+    <h5>Merge into single chart (averages only):
+        <input type="checkbox" id='merge_average'>
     </h5>
     
     <button type="button" onclick="drawChart(true)">Go!</button>

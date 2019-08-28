@@ -14,20 +14,37 @@ function DbQuery(query, queryCallback) {
 }
 
 exports.connection_data = (req, res, next) => {
-    if (req.query.internetConnectionType !== 'wired' && req.query.internetConnectionType !== 'wifi') {
-        res.send('Invalid Query type');
-        return;
+    let type;
+    switch (req.query.internetConnectionType) { // connection type to select for query
+        case 'wired':
+            type = 1;
+            break;
+        case 'wifi':
+            type = 2;
+            break;
+        case 'all':
+            type = 0;
+            break;
+        default:
+            res.send('Invalid Query type');
+            return;
     }
+
     let time;
     if (!req.query.time) {
         time = 4;
     }
     else {
-        time = req.query.time;
+        time = parseFloat(req.query.time);
+    }
+    if (typeof time !== 'number') {
+        res.send('Not valid time.');
+        return;
     }
 
+
     if (req.query.service) {
-        let service;
+        let service; // expands service acronyms into the urls stored in DB
         switch (req.query.service) {
             case 'GIT':
                 service = 'github.com';
@@ -57,10 +74,13 @@ exports.connection_data = (req, res, next) => {
                 service = 'www.amazon.com';
         }
 
-        var query = `SELECT * FROM dev.pingconnectivity_${req.query.internetConnectionType} WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR) AND Service = ${service}`;
+        var query = `SELECT * FROM dev.pingconnectivity WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR) AND Service = ${service} AND Connection = ${type}`;
+    }
+    else if (type === 0) {
+        var query = `SELECT * FROM dev.pingconnectivity WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR)`
     }
     else {
-        var query = `SELECT * FROM dev.pingconnectivity_${req.query.internetConnectionType} WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR)`;
+        var query = `SELECT * FROM dev.pingconnectivity WHERE Time > DATE_ADD(NOW(), INTERVAL -${time} HOUR) AND Connection = ${type}`;
     }
 
     DbQuery(query, (error, results, fields) => {
@@ -83,12 +103,9 @@ exports.connection_data = (req, res, next) => {
 }
 
 exports.services = (req, res, next) => {
-    if (req.query.internetConnectionType !== 'wired' && req.query.internetConnectionType !== 'wifi') {
-        res.send('Invalid Query type');
-        return;
-    }
-    let query = `SELECT DISTINCT Service FROM dev.pingconnectivity_${req.query.internetConnectionType}`;
 
+    let query = `SELECT DISTINCT Service FROM dev.pingconnectivity`;
+    
     DbQuery(query, (error, results, fields) => {
         if (error) throw error;
         //console.log(results);
