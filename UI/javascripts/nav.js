@@ -1,26 +1,30 @@
+/** 
+ * This function handles the page navigation via buttons.
+ * @param {string} path - The navigation url to add onto the base page url
+*/
 function GetRoute(path) {
-    console.log('getroute');
     const mainDivElement = document.getElementById('main');
 
-    let route = `http://192.168.217.128:3000/${path}`;
+    let route = `http://192.168.221.4:3000/${path}`;
     let request = new XMLHttpRequest();
     request.open('GET', route);
 
     request.onload = () => {
-        //console.log(request.response);
         mainDivElement.innerHTML = request.response;
-        if (path === 'InternetMonitor') {
-            drawChart();
-        }
     }
     request.onerror = () => {
         console.error(request.statusText);
-        mainDivElement.innerHTML = request.statusText;
+        mainDivElement.innerHTML = `<h1>There has been an error in loading this content.</h1>`;
     }
     request.send();
     disableBtn(path);
 }
 
+
+/**
+ * Disables the respective nav button when the internal page is already selected
+ * @param {string} path - The navigation url to set as the current location
+ */
 function disableBtn(path) {
     let id;
     switch (path) {
@@ -28,27 +32,29 @@ function disableBtn(path) {
             id = 'navHome';
             break;
         case 'Home':
-        case 'Greywater':
-        case 'InternetMonitor':
+            break;
+        case 'Resume':
+        case 'Github':
             id = 'nav' + path;
             break;
         default:
             console.error('Bad nav bar path: ' + path);
             return
     }
+    if (id !== undefined) {
+        const btnList = document.getElementsByTagName('button');
+        const locationBtn = btnList.namedItem(id);
 
-    const btnList = document.getElementsByTagName('button');
-    const locationBtn = btnList.namedItem(id);
-
-    for (let btn of btnList) {
-        btn.disabled = false;
-        btn.addEventListener("keyup", (event) => {
-            event.preventDefault();
-            if (event.keyCode === 13) {
-                btn.click();
-                btn.toggleAttribute('active');
-            }
-        });
+        for (let btn of btnList) {
+            btn.disabled = false;
+            btn.addEventListener("keyup", (event) => {
+                event.preventDefault();
+                if (event.keyCode === 13) {
+                    btn.click();
+                    btn.toggleAttribute('active');
+                }
+            });
+        }
+        locationBtn.disabled = true;
     }
-    locationBtn.disabled = true;
 }

@@ -1,7 +1,5 @@
 const index = require('express').Router();
-const internetMonitor = require('express').Router();
-const Greywater = require('express').Router();
-const Home = require('express').Router();
+const home = require('express').Router();
 
 const path = require('path');
 
@@ -14,23 +12,13 @@ index.get('/', (req, res, next) => {
     res.sendFile('./views/index.html', options);
 });
 
-internetMonitor.get('/', (req, res, next) => {
-    res.sendFile('./views/InternetMonitor.html', options);
-});
-
-Greywater.get('/', (req, res, next) => {
-    res.sendFile('./views/Greywater.html', options);
-});
-
-Home.get('/', (req, res, next) => {
-    res.sendFile('./views/Home.html', options);
+home.get('/', (req, res, next) => {
+    res.sendFile('./views/home.html', options);
 });
 
 
 
 module.exports = {
     index: index,
-    internetMonitor: internetMonitor,
-    Greywater: Greywater,
-    Home: Home
+    home: home
 };

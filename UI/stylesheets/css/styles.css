@@ -2,7 +2,7 @@ html {
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: #fffcef;
+  background-color: white;
 }
 
 body {
@@ -18,43 +18,61 @@ body header {
   flex-grow: 0;
   flex-shrink: 0;
   flex-direction: column;
-  flex-basis: 12%;
-  background-color: #0081bc;
-  box-shadow: 0px 10px 5px lightgrey;
+  justify-content: center;
+  flex-basis: 17%;
+  background-color: black;
+  background: url("../../../Assets/background.jpg");
+  background-size: 170%;
 }
-body header h1 {
+body header div {
   display: flex;
-  height: 65%;
+  color: white;
+  background: rgba(0, 0, 0, 0.733);
+  flex-direction: column;
+  justify-content: center;
+  height: 70%;
+  width: 67%;
+  margin: 0 16.5%;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+}
+body header div h1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   margin: 0px;
   padding: 5px;
+  width: 100%;
+}
+body header div h3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0px;
+  padding: 5px;
+  width: 100%;
 }
 body header nav {
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  height: 35%;
+  justify-content: space-evenly;
+  height: 30%;
   width: 100%;
+  background: #2c2c2c;
 }
 body header nav button {
-  background: linear-gradient(#0081bc, #89daff);
-  width: 33.3333333333%;
-  border-width: 0px 1px 0px 1px;
-  border-style: solid;
-  border-color: #464646;
-  font: inherit;
+  color: white;
+  background: #2c2c2c;
+  border: 0;
+  width: 25%;
+  font-size: 21px;
+  font-weight: 500;
 }
 body header nav button:hover, body header nav button:focus {
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.3)), linear-gradient(#0081bc, #89daff);
+  transition-duration: 270ms;
+  background: #585858;
 }
 body header nav button:active, body header nav button:disabled {
-  background: linear-gradient(rgba(0, 0, 0, 0), rgba(255, 255, 255, 0.7)), linear-gradient(#0081bc, #89daff);
-  color: inherit;
-}
-body header nav .firstBtn {
-  border-left-width: 0px;
-}
-body header nav .lastBtn {
-  border-right-width: 0px;
+  background: #777777;
 }
 body #main {
   display: inherit;
@@ -75,10 +93,10 @@ body footer {
   display: inherit;
   flex-grow: 0;
   flex-shrink: 0;
-  flex-basis: 4%;
+  flex-basis: 1.5%;
   padding: 5px;
   color: #999999;
-  background-color: #003b56;
+  background-color: black;
 }
 body footer p {
   margin: 0px;

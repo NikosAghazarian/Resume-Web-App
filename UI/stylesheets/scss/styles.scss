@@ -1,15 +1,11 @@
-$BG1: rgb(255, 252, 239);
-$BG2: adjust-hue($color:$BG1, $degrees: 150);
-
 $text: black;
-$navLinkCount: 3;
-$navGradient: linear-gradient(darken($color: $BG2, $amount: 60) ,darken($color: $BG2, $amount: 20));
+$navLinkCount: 2;
 
 html {
   display: flex;
   height: 100%;
   width: 100%;
-  background-color: $BG1;
+  background-color: white;
 }
 
 body {
@@ -25,60 +21,83 @@ body {
     flex-grow: 0;
     flex-shrink: 0;
     flex-direction: column;
-    flex-basis: 12%;
-    background-color: darken($color: $BG2, $amount: 60);
-    box-shadow: 0px 10px 5px lightgrey;
+    justify-content: center;
+    flex-basis: 17%;
+    background-color: black;
+    background: url('../../../Assets/background.jpg');
+    background-size: 170%;
+    //box-shadow: 0px 10px 5px lightgrey;
     
-    h1 {
+    div {
       display: flex;
-      height: 65%;
-      margin: 0px;
-      padding: 5px;
+      color: white;
+      background: rgba(0, 0, 0, 0.733);
+      flex-direction: column;
+      justify-content: center;
+      height: 70%;
+      width: 67%;
+      margin: 0 16.5%;
+      text-shadow:
+        -1px -1px 0 #000,  
+         1px -1px 0 #000,
+        -1px 1px 0 #000,
+         1px 1px 0 #000;
+
+      h1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0px;
+        padding: 5px;
+        width: 100%;
+      }
+      
+      h3 {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin: 0px;
+        padding: 5px;
+        width: 100%;
+      }
     }
+    
 
     nav {
       display: flex;
       flex-direction: row;
-      justify-content: center;
-      height: 35%;
+      justify-content: space-evenly;
+      height: 30%;
       width: 100%;
+      background: rgb(44, 44, 44);
 
       button {
-        background: $navGradient;
-        width: 100%/$navLinkCount;
-        border-width: 0px 1px 0px 1px;
-        border-style: solid;
-        border-color: rgb(70, 70, 70);
-        font: inherit;
+        color: white;
+        background: rgb(44, 44, 44);
+        border: 0;
+        width: (100%/$navLinkCount) - 25%;
+        font-size: 21px;
+        font-weight: 500;
       }   
-
+      
       button:hover, button:focus{
-        background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 0.3)), $navGradient;
+        transition-duration: 270ms;
+        background: rgb(88, 88, 88);
       }
 
       button:active, button:disabled {
-        background: linear-gradient(rgba(0,0,0,0), rgba(255, 255, 255, 0.7)), $navGradient;
-        color:inherit;
-      }
-
-      .firstBtn {
-        border-left-width: 0px;
-      }
-      
-      .lastBtn {
-        border-right-width: 0px;
+        background: rgb(119, 119, 119);
       }
     }
-
   }
 
   #main {
     display: inherit;
     flex-direction: column;
     flex-grow: 82;
-    //height: 82%;
     padding: 1%;
-    width: 98%;      
+    width: 98%; 
+
       h2 {
         width: 100%;
         display: inherit;
@@ -94,10 +113,10 @@ body {
     display: inherit;
     flex-grow: 0;
     flex-shrink: 0;
-    flex-basis: 4%;
+    flex-basis: 1.5%;
     padding: 5px;
     color: lighten($color: $text, $amount: 60);
-    background-color: darken($color: $BG2, $amount: 80);  
+    background-color: black;  
   
     p {
       margin: 0px;
