@@ -13,7 +13,7 @@ app.use('/Assets/background.jpg', express.static('Assets/background.jpg'));
 app.use('/Assets/portrait_cropped.jpg', express.static('Assets/portrait_cropped.jpg'));
 
 //Static file setup
-app.use(express.static(__dirname + '/UI/'));
+//app.use(express.static(__dirname + '/UI/'));
 app.use('/', viewRouter.index);
 app.use('/home',  viewRouter.home);
 
