@@ -3,7 +3,7 @@ let app = express();
 
 
 // ROUTING
-const viewRouter = require('./UI/routes/ViewRouter.js');
+const viewRouter = require('UI/routes/ViewRouter.js');
 
 
 // Asset Setup
