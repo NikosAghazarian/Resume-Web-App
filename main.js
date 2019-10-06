@@ -20,7 +20,6 @@ app.use('/home', viewRouter.home);
 
 // hosting http server
 let port = process.env.PORT || 3000;
-app.listen(port, 'https://nikosaghazarian.herokuapp.com');
 console.log('NodeJS/Express server started on: ' + port);
 
 
