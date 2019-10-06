@@ -7,8 +7,6 @@ const viewRouter = require('./UI/routes/ViewRouter.js');
 
 
 // Asset Setup
-app.use('/favicon.ico', express.static('Assets/favicon.ico'));
-app.use('/Assets/Nikos_Aghazarian_Resume.pdf', express.static('Assets/Nikos_Aghazarian_Resume.pdf'));
 app.use('/Assets/background.jpg', express.static('Assets/background.jpg'));
 app.use('/Assets/portrait_cropped.jpg', express.static('Assets/portrait_cropped.jpg'));
 
