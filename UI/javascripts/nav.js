@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.221.4:3000/';
+const baseUrl = 'https://nikosaghazarian.herokuapp.com/';
 
 
 /** 
