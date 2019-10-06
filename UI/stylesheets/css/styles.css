@@ -19,7 +19,7 @@ body header {
   flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
-  flex-basis: 17%;
+  flex-basis: 21%;
   background-color: black;
   background: url("../../../Assets/background.jpg");
   background-size: 170%;
@@ -66,6 +66,7 @@ body header nav button {
   width: 25%;
   font-size: 21px;
   font-weight: 500;
+  transition-duration: 150ms;
 }
 body header nav button:hover, body header nav button:focus {
   transition-duration: 270ms;
@@ -76,7 +77,7 @@ body header nav button:active, body header nav button:disabled {
 }
 body #main {
   display: inherit;
-  flex-direction: column;
+  flex-direction: row;
   flex-grow: 82;
   padding: 1%;
   width: 98%;
@@ -88,6 +89,23 @@ body #main h2 {
 }
 body #main .hide {
   display: none;
+}
+body #main .sideBar {
+  display: inherit;
+  flex-direction: column;
+  width: 37%;
+  padding-right: 8px;
+}
+body #main .sideBar img {
+  width: 90%;
+  border: 2px solid black;
+  border-radius: 2%;
+}
+body #main .mainCol {
+  display: inherit;
+  flex-direction: column;
+  width: 63%;
+  padding-left: 8px;
 }
 body footer {
   display: inherit;

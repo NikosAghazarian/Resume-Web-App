@@ -10,7 +10,7 @@ const viewRouter = require('./UI/routes/ViewRouter.js');
 app.use('/favicon.ico', express.static('assets/favicon.ico'));
 app.use('/Resume', express.static('Assets/Nikos_Aghazarian_Resume.pdf'));
 app.use('/Assets/background.jpg', express.static('Assets/background.jpg'));
-
+app.use('/Assets/portrait_cropped.jpg', express.static('Assets/portrait_cropped.jpg'));
 
 //Static file setup
 app.use(express.static(__dirname + '/UI/'));

@@ -1,23 +1,32 @@
+const baseUrl = 'http://192.168.221.4:3000/';
+
+
 /** 
- * This function handles the page navigation via buttons.
+ * Handles the page navigation via callbacks from button.
  * @param {string} path - The navigation url to add onto the base page url
 */
 function GetRoute(path) {
-    const mainDivElement = document.getElementById('main');
 
-    let route = `http://192.168.221.4:3000/${path}`;
-    let request = new XMLHttpRequest();
-    request.open('GET', route);
+    if (path === 'Resume') {
+        window.location = baseUrl + 'Resume'
+    }
+    else {
+        const mainDivElement = document.getElementById('main');
 
-    request.onload = () => {
-        mainDivElement.innerHTML = request.response;
+        let route = baseUrl + path;
+        let request = new XMLHttpRequest();
+        request.open('GET', route);
+
+        request.onload = () => {
+            mainDivElement.innerHTML = request.response;
+        }
+        request.onerror = () => {
+            console.error(request.statusText);
+            mainDivElement.innerHTML = `<h1>There has been an error in loading this content.</h1>`;
+        }
+        request.send();
+        //disableBtn(path); DISABLED DUE TO NO USE CURRENT CASES
     }
-    request.onerror = () => {
-        console.error(request.statusText);
-        mainDivElement.innerHTML = `<h1>There has been an error in loading this content.</h1>`;
-    }
-    request.send();
-    disableBtn(path);
 }
 
 
@@ -32,8 +41,8 @@ function disableBtn(path) {
             id = 'navHome';
             break;
         case 'Home':
-            break;
         case 'Resume':
+            break;
         case 'Github':
             id = 'nav' + path;
             break;
