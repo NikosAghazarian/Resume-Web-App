@@ -12,13 +12,7 @@ index.get('/', (req, res, next) => {
     res.sendFile('./views/index.html', options);
 });
 
-home.get('/', (req, res, next) => {
-    res.sendFile('./views/home.html', options);
-});
-
-
 
 module.exports = {
-    index: index,
-    home: home
+    index: index
 };
