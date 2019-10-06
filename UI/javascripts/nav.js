@@ -6,7 +6,7 @@ const baseUrl = 'https://nikosaghazarian.herokuapp.com/';
  * @param {string} path - The navigation url to add onto the base page url
 */
 function GetRoute(path) {
-
+    console.log('GetRoute');
     if (path === 'Resume') {
         window.location = baseUrl + 'Resume'
     }
