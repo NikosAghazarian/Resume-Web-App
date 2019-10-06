@@ -101,6 +101,9 @@ body #main .sideBar img {
   border: 2px solid black;
   border-radius: 2%;
 }
+body #main .sideBar h4 {
+  margin: 0;
+}
 body #main .mainCol {
   display: inherit;
   flex-direction: column;
