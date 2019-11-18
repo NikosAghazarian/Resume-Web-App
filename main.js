@@ -20,5 +20,5 @@ app.use('/', viewRouter.index);
 
 
 // hosting http server
-let port = 3000;//process.env.PORT;
+let port = process.env.PORT;
 app.listen(port, console.log('NodeJS/Express server started on: ' + port));
