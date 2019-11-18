@@ -59,20 +59,24 @@ body header nav {
   width: 100%;
   background: #2c2c2c;
 }
-body header nav button {
+body header nav a {
+  display: inherit;
   color: white;
+  text-decoration: none;
   background: #2c2c2c;
   border: 0;
   width: 25%;
+  justify-content: center;
   font-size: 21px;
   font-weight: 500;
   transition-duration: 150ms;
+  cursor: pointer;
 }
-body header nav button:hover, body header nav button:focus {
+body header nav a:hover, body header nav a:focus {
   transition-duration: 270ms;
   background: #585858;
 }
-body header nav button:active, body header nav button:disabled {
+body header nav a:active, body header nav a:disabled {
   background: #777777;
 }
 body #main {
