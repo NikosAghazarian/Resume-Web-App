@@ -86,6 +86,10 @@ body #main {
   padding: 1%;
   width: 98%;
 }
+body #main ul img {
+  cursor: pointer;
+  width: 50px;
+}
 body #main h2 {
   width: 100%;
   display: inherit;

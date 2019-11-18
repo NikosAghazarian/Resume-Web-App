@@ -45,9 +45,12 @@
       <ul>
           <li>Distance-based LED Strip Controller to provide an interesting way to light a rural outdoor locker at night. (<a href='https://github.com/NikosAghazarian/Arduino-CSA-Lighting'>Github</a>)</li>
           <li>Wave Function Visualizer (<a href='https://github.com/NikosAghazarian/Wave-Function-Visualizer'>Github</a>)</li>
+          <img id='im1' onClick='imageResize("im1")' src='/Assets/Waveform_App.PNG' title='Click to Enlarge and Shrink!'>
           <li>Electron-based Connect 4 (<a href='https://github.com/NikosAghazarian/Connect-4'>Github</a>)</li>      
+          <img id='im2' onClick='imageResize("im2")' src='/Assets/Connect_4.PNG' title='Click to Enlarge and Shrink!'>
           <li>Raspberry Pi in building single- and multi- device systems, used for the Greywater Monitor and Internet Monitor.</li>
           <li>MySQL and MySQL Workbench, used in storing internet tracking data for the Internet Monitor.</li>
+          <img id='im4' onClick='imageResize("im4")' src='/Assets/Sql.PNG' title='Click to Enlarge and Shrink!'>
       </ul>
       <h3>Work Experience:</h3>
       <ul>
@@ -76,12 +79,14 @@
             <ul>
               <li><b>Description:</b> Tracks and stores HTTP response times from select webpages, utilizing two Raspberry Pis. One hosts the DB, webpage UI, and tracks wired connection; one tracks wireless connection and sends to DB. DB stores time, server, response time, and connection type within a MariaDB/MySQL table. Built on the NodeJS and Express frameworks. Serves users access to a localhost site with the recorded information and various ways to visualize the data while on the local network via an Express app.</li>
               <li>August 2019-September 2019</li>
+              <img id='im3' onClick='imageResize("im3")' src='/Assets/InternetMonitor.PNG' title='Click to Enlarge and Shrink!'>
             </ul>
           </ul>
       </ul>
       <h3>Relevant Course Work:</h3>
       <ul>
         <li>Linear Algebra</li>
+        <li>Differential Equations</li>
         <li>Circuits I</li>
         <li>Thermodynamics</li>
       </ul>
@@ -89,9 +94,15 @@
   </div>
 
   <footer>
-    <p style='font-weight: bold'>Nikos Aghazarian 10/5/2019</p>
+    <p style='font-weight: bold'>Nikos Aghazarian 11/17/2019</p>
   </footer>
   
 </body>
+<script>
+function imageResize(callerId) {
+  callerElem = document.getElementById(callerId);
+  window.getComputedStyle(callerElem).getPropertyValue("width") === '50px' ? callerElem.style.width="100%" : callerElem.style.width="50px" ;
+}
+</script>
 </html>
 

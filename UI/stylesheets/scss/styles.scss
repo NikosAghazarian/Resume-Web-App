@@ -103,6 +103,13 @@ body {
     padding: 1%;
     width: 98%; 
 
+      ul {
+        img {
+          cursor: pointer;
+          width: 50px;
+        }
+      }
+
       h2 {
         width: 100%;
         display: inherit;
