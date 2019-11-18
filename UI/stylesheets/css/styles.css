@@ -89,6 +89,7 @@ body #main {
 body #main ul img {
   cursor: pointer;
   width: 50px;
+  border: 1px black solid;
 }
 body #main h2 {
   width: 100%;
