@@ -5,7 +5,8 @@
   "main": "main.js",
   "scripts": {
     "start": "node main.js",
-    "buildsass": "sass ./UI/stylesheets/scss/:./UI/stylesheets/css/"
+    "buildsass": "sass ./UI/stylesheets/scss/:./UI/stylesheets/css/",
+    "dev": "nodemon main.js"
   },
   "author": "Nikos Aghazarian",
   "license": "ISC",
