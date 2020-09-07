@@ -31,24 +31,24 @@ body header div {
   flex-direction: column;
   justify-content: center;
   height: 70%;
-  width: 67%;
-  margin: 0 16.5%;
+  width: auto;
+  margin: 0 30%;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
 body header div h1 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0px;
-  padding: 5px;
+  margin: 5px;
+  padding: 0px;
   width: 100%;
 }
 body header div h3 {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin: 0px;
-  padding: 5px;
+  margin: 5px;
+  padding: 0px;
   width: 100%;
 }
 body header nav {
@@ -85,7 +85,8 @@ body #main {
   color: #444;
   flex-grow: 82;
   padding: 1%;
-  width: 98%;
+  margin: 0 14%;
+  width: 70%;
 }
 body #main ul img {
   cursor: pointer;
@@ -101,17 +102,18 @@ body #main .hide {
   display: none;
 }
 body #main .sideBar {
-  display: inherit;
+  display: flex;
   flex-direction: column;
   width: 37%;
   padding-right: 8px;
 }
 body #main .sideBar img {
-  width: 65%;
+  width: 76%;
+  margin: 1em 0;
   border: 2px solid #1e1e1e;
-  border-radius: 0.2%;
+  border-radius: 0.5%;
 }
-body #main .sideBar h4 {
+body #main .sideBar p, body #main .sideBar h4 {
   margin: 0;
 }
 body #main .mainCol {

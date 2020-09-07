@@ -15,6 +15,7 @@ body {
   font: 18px "Lucida Grande", Helvetica, Arial, sans-serif;
   margin: 0px;
 
+
   header {
     color: $text;
     display: flex;
@@ -35,8 +36,8 @@ body {
       flex-direction: column;
       justify-content: center;
       height: 70%;
-      width: 67%;
-      margin: 0 16.5%;
+      width: auto;//58%;
+      margin: 0 30%;
       text-shadow:
         -1px -1px 0 #000,  
          1px -1px 0 #000,
@@ -47,8 +48,8 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin: 0px;
-        padding: 5px;
+        margin: 5px;
+        padding: 0px;
         width: 100%;
       }
       
@@ -56,8 +57,8 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: center;
-        margin: 0px;
-        padding: 5px;
+        margin: 5px;
+        padding: 0px;
         width: 100%;
       }
     }
@@ -102,7 +103,8 @@ body {
     color: $text;
     flex-grow: 82;
     padding: 1%;
-    width: 98%; 
+    margin: 0 14%;
+    width: 70%; 
 
       ul {
         img {
@@ -122,22 +124,19 @@ body {
       }
 
       .sideBar {
-        display: inherit;
+        display: flex;
         flex-direction: column;
         width: 37%;
         padding-right: 8px;
 
         img {
-          width: 65%;
+          width: 76%;
+          margin: 1em 0;
           border: 2px solid #1e1e1e;
-          border-radius: 0.2%;
+          border-radius: 0.5%;
         }
 
-        i {
-          
-        }
-
-        h4 {
+        p, h4 {
           margin: 0;
         }
       }
