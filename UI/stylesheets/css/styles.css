@@ -22,7 +22,7 @@ body header {
   flex-basis: 21%;
   background-color: black;
   background: url("../../../Assets/background.jpg");
-  background-size: 170%;
+  background-size: 100%;
 }
 body header div {
   display: flex;
@@ -107,9 +107,9 @@ body #main .sideBar {
   padding-right: 8px;
 }
 body #main .sideBar img {
-  width: 90%;
-  border: 2px solid black;
-  border-radius: 2%;
+  width: 65%;
+  border: 2px solid #1e1e1e;
+  border-radius: 0.2%;
 }
 body #main .sideBar h4 {
   margin: 0;
