@@ -15,110 +15,161 @@
       </nav>
     <div>
       <h1 class='headerText'>NIKOS AGHAZARIAN</h1>
-      <h3 class='headerText'>3rd Year Electrical Engineer Undergraduate</h3>
+      <h3 class='headerText'>Electrical Engineering Undergraduate (2022)</h3>
     </div>
   </header>
 
   <div id="main">
     <div class='sideBar'>
-        <img src='/Assets/portrait_cropped.jpg'>
-        <br>
-        <h4>nikosaghazarian@gmail.com</h4>
-        <p>Student At UC Davis</p>
-        <p>San Jose, CA</p>
-        <p>Davis, CA</p>
-        <h3>Skills:</h3>
-        <ul>
-          <li>C <i class="devicon-c-plain colored"></i></li>
-          <li>Python <i class="devicon-python-plain colored"></i></li>
-          <li>MySQL <i class="devicon-mysql-plain colored"></i></li>
-          <li>Javascript <i class="devicon-javascript-plain colored"></i></li>
-          <li>Typecript <i class="devicon-typescript-plain colored"></i></li>
-          <li>Node.js <i class="devicon-npm-original-wordmark colored"></i></li>
-          <li>Angular 2+ <i class="devicon-angularjs-plain colored"></i></li>
-          <li>HTML5/CSS Design <i class="devicon-html5-plain colored"></i></li>
-          <li>Git <i class="devicon-git-plain colored"></i></li>
-          <li>Github <i class="devicon-github-plain colored"></i></li>
-          <li>Bash</li>
-          <li>Matlab</li>
-          <li>Microsoft Office </li>
-          <li>GPIO/Microcontroller level programming</li>
-          <li>Team Oriented Learning and Planning</li>
-        </ul>
-        <h3>Relevant Course Work:</h3>
+      <img src='/Assets/portrait_cropped.jpg'>
+      <br>
+      <h4>nikosaghazarian@gmail.com</h4>
+      <p>Student At UC Davis</p>
+      <p>San Jose, CA</p>
+      <p>Davis, CA</p>
+      <h3>Skills:</h3>
       <ul>
-        <li>Linear Algebra</li>
-        <li>Differential Equations</li>
-        <li>Circuits</li>
-        <li>Thermodynamics</li>
-        <li>Electromagnetics</li>
-        <li>Digital Systems</li>
+        <li>C <i class="devicon-c-plain colored"></i></li>
+        <li>Python <i class="devicon-python-plain colored"></i></li>
+        <li>MySQL <i class="devicon-mysql-plain colored"></i></li>
+        <li>Javascript <i class="devicon-javascript-plain colored"></i></li>
+        <li>Typecript <i class="devicon-typescript-plain colored"></i></li>
+        <li>Node.js <i class="devicon-npm-original-wordmark colored"></i></li>
+        <li>Angular 2+ <i class="devicon-angularjs-plain colored"></i></li>
+        <li>HTML5/CSS Design <i class="devicon-html5-plain colored"></i></li>
+        <li>Git <i class="devicon-git-plain colored"></i></li>
+        <li>Github <i class="devicon-github-plain colored"></i></li>
+        <li>Bash</li>
+        <li>Matlab</li>
+        <li>Microsoft Office </li>
+        <li>GPIO/Microcontroller level programming</li>
+        <li>Team Oriented Learning and Planning</li>
+      </ul>
+      <h3>Course Work:</h3>
+      <ul>
+        <li>Circuits II: 
+          Laplacian Analysis and Amplifiers
+        </li>
+        <li>Non-linear Circuits: 
+          BJTs and Diodes
+        </li>
+        <li>Electromagnetics II: 
+          Transmission Lines, Waveguides, and Antennas
+        </li>
+        <li>Digital Systems II:
+          Verilog, Testbenching, Architecture, and Timing Analysis
+        </li>
+        <li>Digital Circuits:
+          MOSFET Device Parameters and Basic Memories in Virtuoso
+        </li>
+        <li>Signal Analysis:
+          System Responses and Z-transforms
+        </li>
+        <li>VLSI:
+          CMOS layout and design paradigms
+        </li>
+        <li>Radiation & Antennas:
+          Antenna Design, Analysis, and Simulation
+        </li>
       </ul>
     </div>
   
   
   <div class='mainCol'>
-      <h3>Previous Projects and Experiences:</h3>
+      <h3>Previous Projects:</h3>
       <ul>
-        <li>Distance-based LED Strip Controller to provide an interesting way to light a rural outdoor locker at night. (<a href='https://github.com/NikosAghazarian/Arduino-CSA-Lighting'>Github</a>)</li>
-        <li>Wave Function Visualizer (<a href='https://github.com/NikosAghazarian/Wave-Function-Visualizer'>Github</a>)</li>
-        <img id='im1' onClick='imageResize("im1")' src='/Assets/Waveform_App.PNG' title='Click to Enlarge and Shrink!'>
-        <li>Electron-based Connect 4 (<a href='https://github.com/NikosAghazarian/Connect-4'>Github</a>)</li>      
-        <img id='im2' onClick='imageResize("im2")' src='/Assets/Connect_4.PNG' title='Click to Enlarge and Shrink!'>
-        <li>Raspberry Pi in building single- and multi- device systems, used for the Greywater Monitor and Internet Monitor.</li>
-        <li>MySQL and MySQL Workbench, used in storing internet tracking data for the Internet Monitor.</li>
-        <img id='im4' onClick='imageResize("im4")' src='/Assets/Sql.PNG' title='Click to Enlarge and Shrink!'>
+        <li class="subheader">Oracle Database Installation Automation:</li>
+        <ul> 
+          <li>Ansible playbooks to fully establish Oracle Database 19c installations and OEM 13 on fresh RHEL 8 servers.
+             Runs via AWX and pulls all sensitive data from a Hashicorp Vault. Configures packages, kernel parameters, 
+             user groups, directory structures, networking tools, and installation.</li>
+        </ul>
+
+        <li class="subheader">Wave Function Visualizer [<a href='https://github.com/NikosAghazarian/Wave-Function-Visualizer'>Source</a>]</li>
+        <ul>
+          <li>A simple MATLAB app to allow users to view and manipulate ideal and 
+          fourier waveforms.</li>
+          <img id='im1' onClick='imageResize("im1")' src='/Assets/Waveform_App.PNG' title='Click to Enlarge and Shrink!'>
+        </ul>
+        
+
+        <li class="subheader">Greywater System Monitor</li>
+        <ul>
+          <li>Reads the display, using OCR, of a non-IoT-enabled device to determine the operational state of the system.
+              The system takes pictures at regular intervals and reads the image. If an offline state is detected, an email is sent to the user.
+              Built on a Node framework that calls Python scripts to take pictures with system camera.</li>
+        </ul>
+
+        <li class="subheader">Transaction Simulation [<a href='https://github.com/NikosAghazarian/WinterProject2020-API'>Source 1</a>] [<a href='https://github.com/NikosAghazarian/WinterProject2020-WEBAPP'>Source 2</a>]</li>
+        <ul>
+          <li> An app to simulate transactions and processes which are written to a database.
+              Front-end built on Angular; back-end built on Node, Express, and MySQL</li>
+        </ul>
+
+        <li class="subheader">Python TextRPG [<a href='https://github.com/NikosAghazarian/TextGame'>Source</a>]</li>
+        <ul>
+          <li>A text-based terminal game. Runs from an executable directory.
+              The program utilizes many custom classes/types and inheritance to modularize the design.
+              Written to practice python code syntax, structures, constructs (such as decorators and type annotations),
+                and overall design processes. Well documented via the Sphinx library and docstrings.</li>
+        </ul>
+
+        <li class="subheader">Javascript-based Connect 4 [<a href='https://github.com/NikosAghazarian/Connect-4'>Source</a>]</li>      
+        <ul>
+          <li>An Express-based game of Connect 4 built on Electron.</li>
+          <img id='im2' onClick='imageResize("im2")' src='/Assets/Connect_4.PNG' title='Click to Enlarge and Shrink!'>
+        </ul>
+        
+
+        <li class="subheader">Home Internet Monitor [<a href='https://github.com/NikosAghazarian/InternetMonitorServer'>Source</a>]</li>
+        <ul>
+          <li>Tracks and stores HTTP response times from select webpages, utilizing two Raspberry Pis.
+             One hosts the DB, webpage UI, and tracks wired connection; one tracks wireless connection and sends to DB.
+              DB stores time, server, response time, and connection type within a MySQL database. Built on the Node and Express frameworks.
+               Serves users access to a localhost site with the recorded information and various ways to visualize the data while on the local network via an Express app.</li>
+          <img id='im3' onClick='imageResize("im3")' src='/Assets/InternetMonitor.PNG' title='Click to Enlarge and Shrink!'>
+          <img id='im4' onClick='imageResize("im4")' src='/Assets/Sql.PNG' title='Click to Enlarge and Shrink!'>
+        </ul>
+
+        <li class="subheader">Distance-based LED Strip Controller [<a href='https://github.com/NikosAghazarian/Arduino-CSA-Lighting'>Source</a>]</li>
+        <ul> 
+          <li> Provides an interesting way to light a rural outdoor locker at night. Controls an LED strip based on detected user distance from an ultrasonic detector.</li>
+        </ul>        
       </ul>
+
       <h3>Work Experience:</h3>
       <ul>
-        <li>Calculus Tutor</li>
+        <li class="subheader">Database Admin Apprenticeship</li>
         <ul>
-            <li>Helped teach high school calculus after school.</li>
-            <li>Employer: Eastside Union High School District</li>
-            <li>Location: Mount Pleasant High School</li>
-            <li>August 2017 - May 2018</li>
+          <li>Description: Worked to maintain and upgrade connectivity testing scripts.
+             Built Ansible playbooks to perform fresh installs of Oracle software using passwords from Hashicorp Vault.</li>
+          <li>Employer: UC Davis Information & Education Technologies (IET)</li>
+          <li>Location: Davis, CA</li>
+          <li>October 2020 - Present</li>
         </ul>
-        <li>Website Maintainer</li>
+        <li class="subheader">Website Maintainer</li>
         <ul>
             <li>Maintained, updated, and added new features to a Wordpress website.</li>
             <li>Employer: The Palms</li>
-            <li>Location: Los Gatos</li>
+            <li>Location: Los Gatos, CA</li>
             <li>June 2018 - November 2018</li>
         </ul>
-      </ul>
-      <h3>Personal Projects:</h3>
-      <ul>
-        <li>Greywater System Monitor</li>
+        <li class="subheader">Calculus Tutor</li>
         <ul>
-          <li><b>Description:</b> Reads the display, using OCR, of a non-IoT-enabled device to determine the operational state of the system. The system takes pictures at regular intervals and reads the image. If an offline state is detected, an email is sent to the user. Built on a Node framework that calls Python scripts to take pictures with system camera.</li>
-          <li>June 2019-August 2019</li>
-        </ul>
-        <li>Home Internet Monitor [<a href='https://github.com/NikosAghazarian/InternetMonitorServer'>Source</a>]</li>
-        <ul>
-          <li><b>Description:</b> Tracks and stores HTTP response times from select webpages, utilizing two Raspberry Pis. One hosts the DB, webpage UI, and tracks wired connection; one tracks wireless connection and sends to DB. DB stores time, server, response time, and connection type within a MySQL database. Built on the Node and Express frameworks. Serves users access to a localhost site with the recorded information and various ways to visualize the data while on the local network via an Express app.</li>
-          <li>August 2019-September 2019</li>
-          <img id='im3' onClick='imageResize("im3")' src='/Assets/InternetMonitor.PNG' title='Click to Enlarge and Shrink!'>
-        </ul>
-        <li>Transaction Simulation [<a href='https://github.com/NikosAghazarian/WinterProject2020-API'>Source 1</a>] [<a href='https://github.com/NikosAghazarian/WinterProject2020-WEBAPP'>Source 2</a>] [<a href='https://github.com/NikosAghazarian/WinterProject2020-CONTAINERS'>Source 3</a>]</li>
-        <ul>
-          <li><b>Description:</b> An app to simulate transactions and processes which are written to a database. Front-end built on Angular; back-end built on Node, Express, and MySQL</li>
-          <li><b>Current State:</b> On hold to learn python for university CS coursework. CRUD API is mostly finished. Project pending learning how to write NodeJS unit tests.</li>
-          <li>December 2019-Present</li>
-        </ul>
-        <li>Python TextRPG [<a href='https://github.com/NikosAghazarian/TextGame'>Source</a>]</li>
-        <ul>
-          <li><b>Description:</b> A text-based terminal game. Runs from an executable directory. The program utilizes many custom classes/types and inheritance to modularize the design. Written to practice python code syntax, structures, constructs (such as decorators and type annotations), and overall design processes. Well documented (for the things that are not going to change, at least).</li>
-          <li><b>Current State:</b> Actively commiting changes. Rudamentary mechanics implemented. Currently documenting and shift designs to improve scalability, maintainability, and modularity. (Finally got rid of that pesky circular dependency)</li>
-          <li>June 2020-Present</li>
+            <li>Helped teach high school calculus after school.</li>
+            <li>Employer: Eastside Union High School District</li>
+            <li>Location: San Jose, CA</li>
+            <li>August 2017 - May 2018</li>
         </ul>
       </ul>
+
       
       
   </div>
   </div>
 
   <footer>
-    <p style='font-weight: bold'>Nikos Aghazarian 11/17/2019 [<a href='https://github.com/NikosAghazarian/Resume-Web-App'>Source</a>]</p>
+    <p style='font-weight: bold'>Nikos Aghazarian 07/06/2021 [<a href='https://github.com/NikosAghazarian/Resume-Web-App'>Source</a>]</p>
   </footer>
   
 </body>
@@ -129,7 +180,6 @@ function imageResize(callerId) {
   callerElem = document.getElementById(callerId);
   window.getComputedStyle(callerElem).getPropertyValue("width") === '50px' ? callerElem.style.width="100%" : callerElem.style.width="50px" ;
 }
-
 </script>
 </html>
 

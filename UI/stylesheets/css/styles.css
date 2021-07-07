@@ -93,6 +93,9 @@ body #main ul img {
   width: 50px;
   border: 1px black solid;
 }
+body #main ul .subheader {
+  font-weight: bold;
+}
 body #main h2 {
   width: 100%;
   display: inherit;
